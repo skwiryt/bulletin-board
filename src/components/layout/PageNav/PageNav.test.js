@@ -1,12 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { PostComponent } from './Post';
+import { PageNavComponent } from './PageNav';
 
-describe('Component Post', () => {
+describe('Component PageNav', () => {
   it('should render without crashing', () => {
-    const post = {};
     const user = {};
-    const component = shallow(<PostComponent post={post} user={user}/>);
+    const component = shallow(<PageNavComponent user={user} />);
     expect(component).toBeTruthy();
   });
 });

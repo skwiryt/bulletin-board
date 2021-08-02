@@ -4,7 +4,8 @@ import { PostEditComponent } from './PostEdit';
 
 describe('Component PostEdit', () => {
   it('should render without crashing', () => {
-    const component = shallow(<PostEditComponent />);
+    const post = {};
+    const component = shallow(<PostEditComponent post={post}/>);
     expect(component).toBeTruthy();
   });
 });

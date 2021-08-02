@@ -1,0 +1,14 @@
+@import '../../../styles/settings.scss';
+
+:global .fileUploader .fileContainer {
+  margin: auto;
+}
+
+
+.box {
+  height: 100;
+  display: flex;
+  padding-top: $base-size;
+  justify-content: flex-end;
+  align-items: center;
+}

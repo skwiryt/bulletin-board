@@ -1,12 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { PostComponent } from './Post';
+import { RoutesComponent } from './Routes';
 
-describe('Component Post', () => {
+describe('Component Routes', () => {
   it('should render without crashing', () => {
-    const post = {};
     const user = {};
-    const component = shallow(<PostComponent post={post} user={user}/>);
+    const component = shallow(<RoutesComponent user={user}/>);
     expect(component).toBeTruthy();
   });
 });

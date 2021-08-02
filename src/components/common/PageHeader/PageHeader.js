@@ -1,34 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Typography, Paper } from '@material-ui/core';
 import clsx from 'clsx';
 
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
-import styles from './Header.module.scss';
-import { AppBar, Container, Toolbar } from '@material-ui/core';
-import { PageNav } from '../PageNav/PageNav';
+import styles from './PageHeader.module.scss';
 
-const Component = ({className, children}) => (
+const Component = ({className, title}) => (
   <div className={clsx(className, styles.root)}>
-    <AppBar>
-      <Container>
-        <Toolbar>
-          <PageNav></PageNav>
-        </Toolbar>        
-      </Container>
-    </AppBar>
-    <Container>
-      <Toolbar />
-    </Container>
-
-   
+    <Paper className={styles.titlePaper}>
+      <Typography className={styles.title} variant='h3'>{title}</Typography>
+    </Paper>
   </div>
 );
 
 Component.propTypes = {
-  children: PropTypes.node,
+  title: PropTypes.node,
   className: PropTypes.string,
 };
 
@@ -43,7 +33,7 @@ Component.propTypes = {
 // const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  Component as Header,
-  // Container as Header,
-  Component as HeaderComponent,
+  Component as PageHeader,
+  // Container as PageHeader,
+  Component as PageHeaderComponent,
 };

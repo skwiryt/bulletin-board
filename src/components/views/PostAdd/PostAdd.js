@@ -8,15 +8,30 @@ import clsx from 'clsx';
 
 import styles from './PostAdd.module.scss';
 
-const Component = ({className, children}) => (
-  <div className={clsx(className, styles.root)}>
-    <h2>PostAdd</h2>
-    {children}
-  </div>
-);
+import { SubmitPostForm } from '../../common/SubmitPostForm/SubmitPostForm';
+import { PageHeader } from '../../common/PageHeader/PageHeader.js';
 
+class Component extends React.Component {
+
+  // to pobierzemy z reduxa do propsów
+  addPost = (formData) => {
+    for (var pair of formData.entries()) {
+      console.log(pair[0]+ ', ' + pair[1]); 
+    }
+  }
+
+  render = () => {
+    const {className} = this.props;
+    return (
+      <div className={clsx(className, styles.root)}>
+        <PageHeader title="Add new post" />
+        <SubmitPostForm submitAction={this.addPost}/>
+      </div>
+    );
+  }
+}
 Component.propTypes = {
-  children: PropTypes.node,
+  
   className: PropTypes.string,
 };
 

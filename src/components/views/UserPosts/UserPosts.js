@@ -6,24 +6,12 @@ import clsx from 'clsx';
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
-import styles from './Header.module.scss';
-import { AppBar, Container, Toolbar } from '@material-ui/core';
-import { PageNav } from '../PageNav/PageNav';
+import styles from './UserPosts.module.scss';
 
 const Component = ({className, children}) => (
   <div className={clsx(className, styles.root)}>
-    <AppBar>
-      <Container>
-        <Toolbar>
-          <PageNav></PageNav>
-        </Toolbar>        
-      </Container>
-    </AppBar>
-    <Container>
-      <Toolbar />
-    </Container>
-
-   
+    <h2>UserPosts</h2>
+    {children}
   </div>
 );
 
@@ -43,7 +31,7 @@ Component.propTypes = {
 // const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  Component as Header,
-  // Container as Header,
-  Component as HeaderComponent,
+  Component as UserPosts,
+  // Container as UserPosts,
+  Component as UserPostsComponent,
 };

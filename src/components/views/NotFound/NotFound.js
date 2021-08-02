@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { PageHeader } from '../../common/PageHeader/PageHeader';
 import clsx from 'clsx';
 
 // import { connect } from 'react-redux';
@@ -10,9 +10,9 @@ import styles from './NotFound.module.scss';
 
 const Component = ({className, children}) => (
   <div className={clsx(className, styles.root)}>
-    <h2>NotFound</h2>
-    {children}
+    <PageHeader title="Page is not found" />    
   </div>
+  
 );
 
 Component.propTypes = {
