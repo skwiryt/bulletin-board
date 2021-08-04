@@ -207,3 +207,4 @@ Pozwoli Ci to na sprawdzanie aplikacji bezpośrednio, bez użycia `react-scripts
 - [React-scripts](https://www.npmjs.com/package/react-scripts) – główny pakiet projektu stworzonego za pomocą CRA
 - [Yarn](https://yarnpkg.com/en/docs/install) – instalacja narzędzia zastępującego `npm`
 
+## 10. 
