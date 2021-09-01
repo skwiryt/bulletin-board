@@ -20,6 +20,7 @@ class Component extends React.Component {
   state = {
     post: {},
     error: false,
+    imageLoaded: false,
   }
   // Jeśli post będzie z dedykownego temu komponentowi Reduxa , to po zmianie na Home, stary post będzie ciągle w reduxie zanim załaduje się nowy.
   // Jeśli post będzie brany z reduxa odpalonego w Home, to jeśli się wejdzie na spronę post z pominięciem Home, to postu nie będzie
@@ -37,9 +38,12 @@ class Component extends React.Component {
     };
     fetchPost();
   }
+  setImageLoaded = (booleanValue) => {
+    this.setState({...this.state, imageLoaded: booleanValue});
+  }
   render = () => {
     const {className, user} = this.props;
-    const { post, error } = this.state;
+    const { post, error, imageLoaded } = this.state;
     return (
       <div className={clsx(className, styles.root)}>
         { (error) && <Alert severity="error" ><AlertTitle>Error</AlertTitle></Alert> }
@@ -53,8 +57,13 @@ class Component extends React.Component {
           </Typography>
         </Paper>
         <Grid container spacing={5}>
-          <Grid className={styles.image} item xs={6}>
-            <img src={`${PHOTO_URL}/${post.photo}`} alt='announcement'/>
+          <Grid item xs={6}>
+            <div className={styles.image}>
+              { post.photo && !imageLoaded && <div className={styles.placeholder}>Loading...</div>}
+              { post.photo && <img onLoad={() => this.setImageLoaded(true)} className={imageLoaded ? styles.visible : styles.hidden} src={`${PHOTO_URL}/${post.photo}`} alt='announcement'/> }
+              { !post.photo && <div className={styles.placeholder}>No photo attached</div>}
+            </div>
+            
           </Grid>
           <Grid container spacing={1} item xs={6}>  
             <Grid item xs={12}>
