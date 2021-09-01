@@ -1,57 +1,40 @@
 export const initialState = {
   posts: {
-    data: [
-      {
-        id: 'qwerty1',
-        authorId: '1234567',
-        title: 'Test Post nb 1',
-        text: 'It is a post for the purpose of tests',
-        email: 'qwerty@example.com',
-        publishDate: '02/12/2020',
-        editDate: '04/12/2020',
-        status: 'published',
-        photo: 'https://images.pexels.com/photos/6599121/pexels-photo-6599121.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260',
-        phone: '',
-        price: '100',
-        location: '',
+    data: [],
+    requests: {
+      LOAD_POSTS: {
+        active: false,
+        error: false,
       },
-      {
-        id: 'qwerty2',
-        authorId: '1234568',
-        title: 'Test Post nb 2',
-        text: 'It is a post for the purpose of tests. It is a post for the purpose of tests. It is a post for the purpose of tests. It is a post for the purpose of tests.',
-        email: 'qwerty@example.com',
-        publishDate: '02/12/2020',
-        editDate: '04/12/2020',
-        status: 'published',
-        photo: 'https://images.pexels.com/photos/6612080/pexels-photo-6612080.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-        phone: '',
-        price: '100',
-        location: '',
+      ADD_POST: {
+        active: false,
+        error: false,
       },
-      {
-        id: 'qwerty3',
-        authorId: '1234568',
-        title: 'Test Post nb 3',
-        text: 'It is a post for the purpose of tests',
-        email: 'qwerty@example.com',
-        publishDate: '02/12/2020',
-        editDate: '04/12/2020',
-        status: 'published',
-        photo: 'https://images.pexels.com/photos/7244799/pexels-photo-7244799.jpeg',
-        phone: '',
-        price: '100',
-        location: '',
-      },
-    ],
+    },/*
     loading: {
       active: false,
       error: false,
-    },
+    },*/
   },
   user: {
-    loggedIn: false,
+    loggedIn: true,
     id: '1234568',
     role: 'user',
   },
+  //komentarz w komponencie Post.js
+  /*
+  selectedPost: {
+    data: [],
+    requests: {
+      post: {
+        active: false,
+        error: false,
+      },
+      get: {
+        active: false,
+        error: false,
+      },
+    },
+  },
+  */
 };

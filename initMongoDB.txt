@@ -5,7 +5,8 @@ use bulletinBoard
 db.createCollection('posts')
 
 show collections
-
+//w bazie dodam pole email - zawierające to samo info, co author,
+// żeby w przyszłości zamienieć zawartość author na id autor.
 db.posts.insertMany([{
   author: 'the.admin@example.com',
   publishDate: new Date('2019-01-01T12:00:00Z'),

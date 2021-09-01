@@ -4,10 +4,12 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { initialState } from './initialState';
 import { reducer as postsReducer } from './postsRedux';
+// import { reducer as selectedPostReducer } from './selectedPostRedux'; // komentarz w komponencie Post.js
 
 // define reducers
 const reducers = {
   posts: postsReducer,
+  // selectedPost: selectedPostReducer,
 };
 
 // add blank reducers for initial state properties without reducers

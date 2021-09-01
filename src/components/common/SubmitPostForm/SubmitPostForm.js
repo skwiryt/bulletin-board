@@ -6,9 +6,11 @@ import { Alert, AlertTitle } from '@material-ui/lab';
 import ImageUploader from 'react-images-upload';
 
 import clsx from 'clsx';
-
-// import { connect } from 'react-redux';
+import validator from 'validator';
+import { get } from '../../../redux/userRedux';
+import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
+import { PHOTO_URL } from '../../../config';
 
 import styles from './SubmitPostForm.module.scss';
 // import './SubmitPostForm.module.scss';
@@ -23,6 +25,7 @@ class Component extends React.Component  {
   state = {
     post: {...this.props.post},
     error: false,
+    sent: false,
   };
 
   handleChange = ({target}) => {
@@ -42,13 +45,17 @@ class Component extends React.Component  {
 
   submitForm = (e) => {
     const { post } = this.state;
+    const { user } = this.props;
     e.preventDefault();
 
     let error = null;
 
-    if(!post.file && !post.photo) error = 'You have to select an image';
-    else if(!post.title.length || !post.text.length || !post.email.length) error = `You can't leave title, text or email fields empty`;
-    else if(post.title.length > 50) error = `Title can't be longer than 25 characters`;
+    // if(!post.file && !post.photo) error = 'You have to select an image';
+    if(!post.title.length || !post.text.length || !post.email.length) error = `You can't leave title, text or email fields empty`;
+    else if(post.title.length > 25) error = `Title can't be longer than 25 characters`;
+    else if(post.title.length < 10) error = `Title can't be shorter than 10 characters`;
+    else if(post.text.length < 20) error = `Text can't be shorter than 20 characters`;
+    else if(!validator.isEmail(post.email)) error =  `Enter valid email`;
 
     if(!error) {
       const formData = new FormData();
@@ -56,13 +63,14 @@ class Component extends React.Component  {
       ['email', 'text', 'title', 'phone', 'price', 'location'].forEach(key => {
         formData.append(key, post[key]);
       });
+      formData.append('author', user.id);
 
       if(post.file) {
-        formData.append('file', post.file);
+        formData.append('photo', post.file);
       }      
 
       this.props.submitAction(formData);
-      this.setState({ error: null });
+      this.setState({ error: null, sent: true });
     }
     else this.setState({ error });
   }
@@ -70,19 +78,20 @@ class Component extends React.Component  {
   render = () => {
     const { className, request } = this.props;
     const { title, text, email, phone, price, location, photo, file} = this.state.post;
-    const { error } = this.state;
+    const { error, sent } = this.state;
     const { handleChange, setImage, submitForm, clearError } = this;
 
     const buttonText = photo || file ? 'Change image' : 'Choose image';
-    const defaultImageOption = photo ? { defaultImages: [photo]} : {};
+    const defaultImageOption = photo ? { defaultImages: [`${PHOTO_URL}/${photo}`]} : {};
 
     return (
       <div className={clsx(className, styles.root)}>
         <form>
-          { (request && request.success) && <Alert severity="success"><AlertTitle>Success</AlertTitle>Your photo has been successfully submitted!</Alert> }
+          { (sent && !request.active && !request.error) && <Alert severity="success"><AlertTitle>Success</AlertTitle>Your post has been successfully submitted!</Alert> }
+          { (sent && request.error) && <Alert severity="error"><AlertTitle>Error</AlertTitle>Request error</Alert> }
           { (error) && <Alert severity="error" onClose={clearError}><AlertTitle>Error</AlertTitle>{ error }</Alert> }
-          { (request && request.pending) && <CircularProgress /> }
-          { (!request || !request.success) &&
+          { (sent && request.active) && <CircularProgress /> }
+          { (!sent) &&
             (
               <Grid container spacing={5}>
                 <Grid item xs={6} >             
@@ -104,7 +113,7 @@ class Component extends React.Component  {
                     <ImageUploader
                       withIcon={true}
                       buttonText={ buttonText }
-                      imgExtension={['.jpg', '.gif', '.png']}
+                      imgExtension={['.jpg', 'jpeg', '.gif', '.png']}
                       maxFileSize={5242880}
                       withPreview={true}
                       onChange={setImage}
@@ -127,6 +136,7 @@ Component.propTypes = {
   post: PropTypes.object,
   className: PropTypes.string,
   request: PropTypes.object,
+  user: PropTypes.object,
 };
 
 Component.defaultProps = {
@@ -137,22 +147,22 @@ Component.defaultProps = {
     email: '',
     phone: '',
     price: '',
-    location: '',
+    location: '',    
   }, 
 };
 
-// const mapStateToProps = state => ({
-//   someProp: reduxSelector(state),
-// });
+const mapStateToProps = state => ({
+  user: get(state),
+});
 
 // const mapDispatchToProps = dispatch => ({
 //   someAction: arg => dispatch(reduxActionCreator(arg)),
 // });
 
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const Container = connect(mapStateToProps)(Component);
 
 export {
-  Component as SubmitPostForm,
-  // Container as SubmitPostForm,
+  // Component as SubmitPostForm,
+  Container as SubmitPostForm,
   Component as SubmitPostFormComponent,
 };
