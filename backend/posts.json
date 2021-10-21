@@ -1,0 +1,60 @@
+[
+  {    
+    "author": "the.admin@example.com",
+    "publishDate": {
+        "$date": "2019-01-01T12:00:00.000Z"
+    },
+    "editDate": {
+        "$date": "2019-01-01T12:00:00.000Z"
+    },
+    "status": "published",
+    "title": "Welcome to our bulletin board!",
+    "text": "Email me to register and get an account!",
+    "photo": null,
+    "price": null,
+    "phone": null,
+    "location": null,
+    "email": "the.admin@example.com"
+  },
+  {    
+    "author": "1234568",
+    "title": "The best barber shop.",
+    "text": "We are the best in town. No matter what is your preffered style. Call on!",
+    "email": "qwerty@example.com",
+    "publishDate": "02/12/2020",
+    "editDate": "04/12/2020",
+    "status": "published",
+    "photo": "pexels-photo-6612080.jpeg",
+    "phone": "",
+    "price": "",
+    "location": "Pcim Wielki"
+  },
+  {
+    "author": "1234568",
+    "title": "A pack of Turkish tea.",
+    "text": "A cup of tee Turkish way will make your day.",
+    "email": "qwerty@example.com",
+    "publishDate": "02/12/2020",
+    "editDate": "04/12/2020",
+    "status": "published",
+    "photo": "pexels-photo-7244799.jpeg",
+    "phone": "",
+    "price": "9",
+    "location": ""
+  },
+  {
+    "author": "Aurthor",
+    "email": "email@example.com",
+    "publishDate": {
+        "$date": "2021-09-01T12:04:18.465Z"
+    },
+    "editDate": {
+        "$date": "2021-09-01T12:04:18.465Z"
+    },
+    "status": "published",
+    "title": "Pearl necklace.",
+    "text": "The necklace of pearls brings good luck and looks gorgeous.",
+    "photo": "997222pexels-photo-6599121.jpeg",  
+    "price": "249"
+  }
+]

@@ -21,16 +21,21 @@ app.use('/api', (req, res) => {
 });
 
 /* REACT WEBSITE */
-app.use(express.static(path.join(__dirname, '../public')));
-// app.use('/',express.static(path.join(__dirname, '../public')));
+// app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.static(path.join(__dirname, '../build')));
+
+// change the place of uploads
+app.use(express.static(path.join(__dirname, './public')));
 
 app.use('*', (req, res) => {  
   res.sendFile(path.join(__dirname, '../build/index.html'));
 });
 
 /* MONGOOSE */
-mongoose.connect('mongodb://localhost:27017/bulletinBoardDB', { useNewUrlParser: true, useUnifiedTopology: true });
+// process.env directs to Atlas DB, comment out the line according to the need
+// const connectionUrl = 'mongodb://localhost:27017/bulletinBoardDB';
+const connectionUrl = process.env.BULLETIN_DB_STRING;
+mongoose.connect(connectionUrl, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.once('open', () => {
   console.log('Successfully connected to the database');
@@ -42,3 +47,6 @@ const port = process.env.PORT || 8000;
 app.listen(port, () => {
   console.log('Server is running on port: '+port);
 });
+
+// /home/mzb/works/kodilla/bulletin-board/backend/posts.json
+// mongoimport --uri "connection string" --collection posts --drop --file /home/mzb/works/kodilla/bulletin-board/backend/posts.json --jsonArray
