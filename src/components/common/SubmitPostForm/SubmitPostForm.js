@@ -113,7 +113,7 @@ class Component extends React.Component  {
                     <ImageUploader
                       withIcon={true}
                       buttonText={ buttonText }
-                      imgExtension={['.jpg', 'jpeg', '.gif', '.png']}
+                      imgExtension={['.jpg', 'jpeg', '.png', 'svg']}
                       maxFileSize={5242880}
                       withPreview={true}
                       onChange={setImage}
