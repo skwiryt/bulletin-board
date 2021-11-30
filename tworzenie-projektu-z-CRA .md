@@ -53,6 +53,10 @@ UWAGA:
   2. Przy reakt od 17.00 jedyny znaleziony i działający adapter enzyme to: @wojtekmaj/enzyme-adapter-react-17
   3. node-sass źle działa z linux. Można zastosować zamiast tego sass.
 
+  czyli (bez testów):
+  yarn add sass react-router-dom redux react-redux
+  yarn add -D husky@4.2 lint-staged redux-devtools-extension
+
 ```
 
 ## 6. Uzupełnienie konfiguracji `package.json`
